@@ -1,0 +1,276 @@
+
+.notification-manager {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  border: 1px solid var(--glass-border);
+}
+
+.notification-status {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: var(--border-radius-sm);
+  margin-bottom: 1rem;
+}
+
+.notification-status p {
+  margin: 0.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notification-controls {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+  flex-wrap: wrap;
+}
+
+.notification-controls .btn {
+  flex: 1;
+  min-width: 150px;
+}
+
+.notification-error {
+  background: rgba(244, 67, 54, 0.1);
+  border: 1px solid rgba(244, 67, 54, 0.3);
+  padding: 1rem;
+  border-radius: var(--border-radius-sm);
+  text-align: center;
+}
+
+.notification-error h3 {
+  color: #F44336;
+  margin-bottom: 0.5rem;
+}
+
+.device-info {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: var(--border-radius-sm);
+  margin: 1rem 0;
+  border-left: 4px solid;
+}
+
+.device-info.ios {
+  border-left-color: #007AFF;
+}
+
+.device-info.android {
+  border-left-color: #4CAF50;
+}
+
+.device-info.desktop {
+  border-left-color: #FF9800;
+}
+
+.device-info h4 {
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.device-info ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.device-info li {
+  padding: 0.25rem 0;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.device-info li:before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--text-muted);
+}
+
+.notification-help {
+  background: rgba(255, 152, 0, 0.1);
+  border: 1px solid rgba(255, 152, 0, 0.3);
+  padding: 1rem;
+  border-radius: var(--border-radius-sm);
+  margin: 1rem 0;
+}
+
+.notification-help h4 {
+  color: #FF9800;
+  margin-bottom: 0.5rem;
+}
+
+.notification-help ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.notification-help li {
+  padding: 0.25rem 0;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.notification-help li:before {
+  content: '⚙️';
+  position: absolute;
+  left: 0;
+}
+
+/* Estados específicos de notificaciones */
+.status.success {
+  background: linear-gradient(45deg, #4CAF50, #45a049);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status.error {
+  background: linear-gradient(45deg, #F44336, #d32f2f);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status.warning {
+  background: linear-gradient(45deg, #FF9800, #f57c00);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* Indicadores de instalación PWA */
+.pwa-install-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(76, 175, 80, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.pwa-not-installed {
+  background: rgba(255, 152, 0, 0.1);
+  border-color: rgba(255, 152, 0, 0.3);
+}
+
+/* Animaciones para notificaciones */
+@keyframes notificationPulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.notification-active {
+  animation: notificationPulse 2s infinite;
+}
+
+/* Toast notifications (opcional) */
+.toast-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  max-width: 300px;
+  z-index: 1000;
+  transform: translateX(100%);
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+.toast-notification.success {
+  border-left: 4px solid #4CAF50;
+}
+
+.toast-notification.error {
+  border-left: 4px solid #F44336;
+}
+
+.toast-notification.warning {
+  border-left: 4px solid #FF9800;
+}
+
+@keyframes slideIn {
+  to { transform: translateX(0); }
+}
+
+@keyframes slideOut {
+  to { transform: translateX(100%); }
+}
+
+.toast-notification.closing {
+  animation: slideOut 0.3s ease-in forwards;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .notification-controls {
+    flex-direction: column;
+  }
+  
+  .notification-controls .btn {
+    width: 100%;
+  }
+  
+  .device-info {
+    padding: 0.75rem;
+  }
+  
+  .toast-notification {
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .notification-manager {
+    padding: 1rem;
+    margin: 0.5rem 0;
+  }
+  
+  .notification-status {
+    padding: 0.75rem;
+  }
+  
+  .notification-status p {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .notification-active,
+  .toast-notification {
+    animation: none;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .device-info {
+    border-left-width: 6px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .notification-error,
+  .notification-help {
+    border-width: 2px;
+  }
+}
